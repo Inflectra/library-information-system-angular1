@@ -1,0 +1,36 @@
+<main class="container">
+    <div class="row well">
+        <div class="col-md-6">
+            
+            <h1>Welcome to the Library Information System</h1>
+            
+            <p>This sample application lets you view, create and edit books in a libary catalog as well as view, create and edit authors.</p>
+            
+            <p>To view the library catalog or the authors list you will need to login as a borrower and to make changes to the list of books or authors you will need to login as a librarian.</p>
+            
+            <p>Note: This is not a real application, but is just a sample application used in the popular <a href="http://www.inflectra.com/SpiraTest">SpiraTest</a>  test management system and <a href="http://www.inflectra.com/Rapise">Rapise</a>  test automation system. Both of these products are created by <a class="http://www.inflectra.com/">Inflectra Corporation</a>.</p>
+        </div>
+        
+        <div class="col-md-4 col-md-offset-2">
+            
+            <h2>Please login</h2>
+            <form name="loginForm" novalidate>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input ng-model="usernameinput" name="user" type="text" class="form-control" id="username" placeholder="Username" required="" />
+
+                    </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input ng-model="passwordinput" name="password" type="password" class="form-control" id="password" placeholder="Password" required="" />
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary" ng-click="loginMatch()" />Login</button>
+                   </div>
+                </form>
+            
+        </div>
+            
+        
+    </div>
+</main>

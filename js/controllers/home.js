@@ -39,20 +39,35 @@ $scope.users=[
     }
 ];
 
-
+$scope.currentUser = [];
+$scope.currentUserName = $scope.currentUser.name;
 
 $scope.loginMatch = function() {
     for(var i = 0; i < $scope.users.length; i++) {
-        if($scope.usernameinput == $scope.users[i].username && $scope.passwordinput == $scope.users[i].password) {
-            alert($scope.users[i].name + " is logged in");
-        } 
         
-        // else if($scope.usernameinput != $scope.users[i].username || $scope.passwordinput != $scope.users[i].password) {
-        //       console.log("login info invalid");
-        // } 
-      
-        }         
-  
-    };
+ if ($scope.usernameinput == $scope.users[i].username) {
+  if ($scope.passwordinput == $scope.users[i].password) {
+    $scope.currentUser.push($scope.users[i]);
+    alert($scope.users[i].name + " is logged in");
+    console.log($scope.currentUser);
+    $scope.loggedIn = true;
+    return;
 
-});
+  } else {
+    alert("Login attempt not successful. Please try again.");
+    $scope.loginForm.$setUntouched();
+    $scope.loginForm.$setPristine();
+    $scope.currentUser = [];
+  }
+} 
+} 
+
+if ($scope.usernameinput != $scope.users.username) {
+    alert("User does not exist.");
+    $scope.loginForm.$setUntouched();
+    $scope.loginForm.$setPristine();
+    $scope.currentUser = [];
+  }
+};
+
+}); 

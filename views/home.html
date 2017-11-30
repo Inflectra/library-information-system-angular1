@@ -12,10 +12,16 @@
         </div>
         
         <div class="col-md-4 col-md-offset-2">
-            
+            <div ng-hide="loggedIn">
             <h2>Please login</h2>
             <form name="loginForm" novalidate>
                 <div class="form-group">
+                    
+                    <div class="alert alert-warning" ng-show="loginForm.user.$invalid && loginForm.$submitted && loginForm.user.$pristine && loginForm.password.$dirty">Username required.</div>
+                    <div class="alert alert-warning" ng-show="loginForm.password.$invalid && loginForm.$submitted && loginForm.password.$pristine && loginForm.user.$dirty">Password required.</div>
+                    <div class="alert alert-warning" ng-show="loginForm.user.$invalid && loginForm.password.$invalid 
+                    && loginForm.$submitted">Please provide login details.</div>
+                    
                     <label for="username">Username</label>
                     <input ng-model="usernameinput" name="user" type="text" class="form-control" id="username" placeholder="Username" required="" />
 
@@ -31,6 +37,6 @@
             
         </div>
             
-        
+        </div>
     </div>
 </main>

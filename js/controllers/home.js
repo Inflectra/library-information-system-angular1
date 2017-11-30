@@ -58,6 +58,7 @@ $scope.loginMatch = function() {
     $scope.loginForm.$setUntouched();
     $scope.loginForm.$setPristine();
     $scope.currentUser = [];
+    return;
   }
 } 
 } 
@@ -68,6 +69,6 @@ if ($scope.usernameinput != $scope.users.username) {
     $scope.loginForm.$setPristine();
     $scope.currentUser = [];
   }
-};
+}; 
 
 }); 

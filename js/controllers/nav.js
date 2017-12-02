@@ -1,5 +1,6 @@
 /* global app */
-app.controller('navCtrl', function($scope) {
+app.controller('navCtrl', function($scope, $cookies) {
+
 
 
 });

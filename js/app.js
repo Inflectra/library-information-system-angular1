@@ -2,7 +2,7 @@
 /* global permissions */
 
 
-var app = angular.module("myApp", ["ui.router"]);
+var app = angular.module("myApp", ["ui.router", "ngCookies"]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
    $urlRouterProvider.otherwise('/home');
@@ -22,6 +22,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
         url : "/authors",
         templateUrl : "views/authors.html",
         controller : "authorsCtrl"
+    })
+    .state("login", {
+        controller : "loginCtrl"
     })
     .state("nav", {
         templateUrl : "views/nav.html",

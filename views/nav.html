@@ -1,4 +1,4 @@
-        <nav class="navbar navbar-default">
+        <nav  ng-controller="navCtrl" class="navbar navbar-default">
           <div class="container-fluid">
             <div class="navbar-header">
               <a class="navbar-brand" ui-sref="home">Library Information System</a>
@@ -8,7 +8,7 @@
                 <li><a ui-sref="authors">Authors</a></li>
             </ul>
             <div data-ng-controller="loginCtrl">
-            <p class="navbar-text navbar-right">{{logInMessage}} <a href="#" class="navbar-link" ng-click="logout()">Log Out</a></p>
+            <div ng-show="loggedIn"><p class="navbar-text navbar-right">Logged in as {{logInName}} , <a href="#" class="navbar-link" ng-click="logOut()">Log Out</a></p></div>
             </div>
           </div>
         </nav>   

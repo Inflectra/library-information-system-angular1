@@ -1,4 +1,6 @@
 /* global app */
+/* global vm */
+/* global angular */
 app.controller('authorsCtrl', function($scope) {
 
 $scope.authorsList = [
@@ -23,5 +25,7 @@ $scope.authorsList = [
     age: 98
   }
 ];
+
+
 
 });

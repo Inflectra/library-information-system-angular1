@@ -1,4 +1,4 @@
 /* global app */
-app.controller('homeCtrl', function($scope, $cookies) {
+app.controller('homeCtrl', function($scope) {
 
 }); 

@@ -1,5 +1,6 @@
 /* global app */
-app.controller('loginCtrl', function($scope, $cookies) {
+app.controller('loginCtrl', function($scope, $rootScope, $location) {
+console.log($rootScope);
 
 $scope.users=[
     {
@@ -42,9 +43,9 @@ $scope.users=[
 $scope.logInMessage = "";
 $scope.loggedIn = false;
 $scope.errorMessage = "";
+$scope.logInName = "";
 //$scope.currentUser = [];
-$scope.userNameCookie = $cookies.get('loggedInUser');
-$scope.userData = $cookies.get('userData');
+
 
 
 
@@ -55,16 +56,16 @@ $scope.loginMatch = function() {
           if ($scope.passwordinput == $scope.users[i].password) {
             //if it is a match, do all these things  
            // $scope.currentUser.push($scope.users[i]);
-            $cookies.put('loggedInUser', $scope.users[i].name);
             alert($scope.users[i].name + " is logged in");
-            console.log($scope.userNameCookie);
-            $scope.loggedIn = true;
-            $scope.logInMessage = "Logged in as " + $scope.userNameCookie + ", ";
+           $scope.loggedIn = true;
+            $scope.logInName = $scope.users[i].name;
             $scope.errorMessage = "";
+           // $location.path('books');
+            $rootScope.loggedIn = true;
             return;
         
           } else {
-            alert("Login attempt not successful. Please try again.");
+         //   alert("Login attempt not successful. Please try again.");
             $scope.errorMessage = "Login attempt not successful. Please try again.";
             $scope.loginForm.$setUntouched();
             $scope.loginForm.$setPristine();
@@ -75,18 +76,17 @@ $scope.loginMatch = function() {
      } 
 
 if ($scope.usernameinput != $scope.users.username) {
-    alert("User does not exist.");
-    $scope.errorMessage = "";
+   // alert("User does not exist.");
+    $scope.errorMessage = "User does not exist";
     $scope.loginForm.$setUntouched();
     $scope.loginForm.$setPristine();
     $scope.currentUser = [];
   }
 }; 
 
-$scope.logout = function(){
-  $cookies.remove("loggedInUser");
-  window.location.reload();
-};
+// $scope.logout = function(){
+//   window.location.reload();
+// };
 
 
 }); 

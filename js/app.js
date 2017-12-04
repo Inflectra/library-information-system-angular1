@@ -2,7 +2,7 @@
 /* global permissions */
 
 
-var app = angular.module("myApp", ["ui.router", "ngCookies"]);
+var app = angular.module("myApp", ["ui.router"]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
    $urlRouterProvider.otherwise('/home');
@@ -30,6 +30,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
         templateUrl : "views/nav.html",
         controller : "navCtrl"
     });
-});
+})
 
+.run(['$rootScope', '$state', function($rootScope, $state) {
+ $rootScope.loggedIn = false;
+   $rootScope.$on('$stateChangeStart', function(e, to) {
+  
+   console.log($rootScope.loggedIn);
+     if ($rootScope.loggedIn == false && to.name != 'home') {
+       e.preventDefault();
+       alert('Please log in.')
+     }
+ 
+    });
+ 
+ }]);
 

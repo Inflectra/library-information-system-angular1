@@ -17,10 +17,7 @@
             <form name="loginForm" novalidate>
                 <div class="form-group">
                     
-                    <div class="alert alert-warning" ng-show="loginForm.user.$invalid && loginForm.$submitted && loginForm.user.$pristine && loginForm.password.$dirty">Username required.</div>
-                    <div class="alert alert-warning" ng-show="loginForm.password.$invalid && loginForm.$submitted && loginForm.password.$pristine && loginForm.user.$dirty">Password required.</div>
-                    <div class="alert alert-warning" ng-show="loginForm.user.$invalid && loginForm.password.$invalid 
-                    && loginForm.$submitted">Please provide login details.</div>
+                    <div class="alert alert-warning" ng-show="errorMessage">{{errorMessage}}</div>
                     
                     <label for="username">Username</label>
                     <input ng-model="usernameinput" name="user" type="text" class="form-control" id="username" placeholder="Username" required="" />

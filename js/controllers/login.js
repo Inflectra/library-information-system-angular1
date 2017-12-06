@@ -1,5 +1,5 @@
 /* global app */
-app.controller('loginCtrl', function($scope, $rootScope, $location) {
+app.controller('loginCtrl', function($scope, $rootScope, $location, $state) {
 console.log($rootScope);
 
 $scope.users=[
@@ -43,7 +43,7 @@ $scope.users=[
 $scope.logInMessage = "";
 $scope.loggedIn = false;
 $scope.errorMessage = "";
-$scope.logInName = "";
+$rootScope.logInName = "";
 //$scope.currentUser = [];
 
 
@@ -57,8 +57,8 @@ $scope.loginMatch = function() {
             //if it is a match, do all these things  
            // $scope.currentUser.push($scope.users[i]);
             alert($scope.users[i].name + " is logged in");
-           $scope.loggedIn = true;
-            $scope.logInName = $scope.users[i].name;
+            $rootScope.logInName = $scope.users[i].name;
+            $scope.loggedIn = true;
             $scope.errorMessage = "";
            // $location.path('books');
             $rootScope.loggedIn = true;

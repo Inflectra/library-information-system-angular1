@@ -2,7 +2,7 @@
 /* global permissions */
 
 
-var app = angular.module("myApp", ["ui.router"]);
+var app = angular.module('myApp', ['ui.router', 'ui.grid', 'ui.grid.edit', 'ui.grid.rowEdit', 'ui.grid.cellNav', 'ui.grid.saveState']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
    $urlRouterProvider.otherwise('/home');
@@ -43,6 +43,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
      }
  
     });
+ 
  
  }]);
 

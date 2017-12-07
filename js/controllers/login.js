@@ -1,6 +1,5 @@
 /* global app */
 app.controller('loginCtrl', function($scope, $rootScope, $location, $state) {
-console.log($rootScope);
 
 $scope.users=[
     {

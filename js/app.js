@@ -36,14 +36,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
  $rootScope.loggedIn = false;
    $rootScope.$on('$stateChangeStart', function(e, to) {
   
-   console.log($rootScope.loggedIn);
-     if ($rootScope.loggedIn == false && to.name != 'home') {
+       if ($rootScope.loggedIn == false && to.name != 'home') {
        e.preventDefault();
        alert('Please log in.')
      }
  
     });
- 
  
  }]);
 

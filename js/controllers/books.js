@@ -138,17 +138,16 @@ app.controller('booksCtrl', ['$scope', 'bookService', function($scope, bookServi
      bookService.updateBooks(obj);
    };
    
-  $scope.temp = bookService.booksList;
+  $scope.bookTemp = bookService.booksList;
   
   $scope.genreTypes = ['Murder Mystery',
  'Historical Fiction',
  'Contemporary Fiction' 
   ];
   
-  
   $scope.bookGridOptions = {
     
-    data: 'temp',
+    data: 'bookTemp',
     enableCellSelection: true,
     enableCellEdit: true,
     enableCellEditOnFocus: true,
@@ -157,7 +156,6 @@ app.controller('booksCtrl', ['$scope', 'bookService', function($scope, bookServi
     saveScroll: true,
     saveGroupingExpandedStates: true,
     enableRowSelection: true,
-    enableRowHeaderSelection: false,
     onRegisterApi: function (gridApi) {
                    $scope.gridApi = gridApi;
                    },
@@ -168,7 +166,8 @@ app.controller('booksCtrl', ['$scope', 'bookService', function($scope, bookServi
        },
        { field: 'name', displayName: 'Name', enableHiding: false
        },
-       { field: 'author', displayName: 'Author', enableHiding: false
+       { field: 'author', displayName: 'Author', enableHiding: false,
+         editType: 'dropdown', editableCellTemplate: 'tempAuthor.html'
        },
        { field: 'genre', name: 'genre', displayName: 'Genre', enableHiding: false,
          editType: 'dropdown', editableCellTemplate: 'temp.html'
@@ -182,11 +181,20 @@ app.controller('booksCtrl', ['$scope', 'bookService', function($scope, bookServi
     ]
   };
   
-  // $scope.addNewItem = function() {
-  //   var n = $scope.temp.length + 1;
-  //   $scope.temp.push( { id: n, name: 'New Author', age: 0});
-  //   };
+var today = new Date();
+var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
 
+  
+   $scope.addNewBook = function() {
+     var n = $scope.bookTemp.length + 1;
+     $scope.bookTemp.push( { id: n, name: 'New Book', author: "", genre: "", dateAdded: date, outOfPrint: "No"  });
+     };
+
+  $scope.deleteSelected = function(row) {
+    angular.forEach($scope.gridApi.selection.getSelectedRows(), function (data, index) {
+    $scope.bookTemp.splice($scope.bookTemp.lastIndexOf(data), 1);
+  });
+};
 
 
 }]);

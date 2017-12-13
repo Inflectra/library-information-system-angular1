@@ -2,9 +2,9 @@
 <div class="row">
     
     <h3>The following books exist in the system:</h3>
-    <small><button type="button" class="btn btn-default btn-sm">create new book</button></small>
+    <small><button type="button" class="btn btn-default btn-sm" ng-click="addNewBook()">create new book</button></small>
 
-        <div ui-grid="bookGridOptions" ui-grid-edit ui-grid-row-edit ui-grid-cellNav ui-grid-save-state ui-grid-selection class="grid" external-scopes="myExternalScope"></div>
+        <div ui-grid="bookGridOptions" ui-grid-edit ui-grid-row-edit ui-grid-cellNav ui-grid-save-state ui-grid-selection class="grid"></div>
 
          <!--<div class="btn-group">-->
          <!--    <button type="button" class="btn btn-default btn-xs -->
@@ -12,6 +12,9 @@
          <!--          <button type="button" class="btn btn-danger btn-xs -->
          <!--          ">Delete</button>-->
          <!--</div>-->
+
+        <button type="button" class="btn btn-default btn-sm btn-danger" ng-click="deleteSelected()">Delete Selected Authors</button>
+
 
 </div>
 </main>

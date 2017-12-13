@@ -39,13 +39,10 @@ app.controller('authorsCtrl', ['$scope', 'authorService', function($scope, autho
   $scope.addNewItem = function() {
     var n = $scope.temp.length + 1;
     $scope.temp.push( { id: n, name: 'New Author', age: 0});
+    console.log($scope.temp);
     };
     
-//   $scope.deleteSelected = function(row) {
-//     angular.forEach($scope.gridApi.selection.getSelectedRows(), function (data, index) {
-//     $scope.temp.splice($scope.temp.lastIndexOf(data), 1);
-//   });
-// };
+    $scope.selected = $scope.temp[0];
   
 }]);
 

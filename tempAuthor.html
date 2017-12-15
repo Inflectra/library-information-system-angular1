@@ -1,5 +1,5 @@
 <div>
-    <select ng-model="row.entity.author" data-ng-options="author.name for author in grid.appScope.temp">
+    <select ng-model="row.entity.author" data-ng-options="author.id as author.name for author in grid.appScope.temp track by author.id">
         <option value="" selected disabled>Choose Author</option>
     </select>
 </div>

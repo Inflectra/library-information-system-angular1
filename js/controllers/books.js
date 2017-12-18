@@ -8,6 +8,7 @@ app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', function(
    };
    
   $scope.bookTemp = bookService.booksList;
+  $scope.temp;
   
   $scope.genreTypes = [
     {id:"Murder Mystery", value:"Murder Mystery"},
@@ -37,8 +38,7 @@ app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', function(
        { field: 'name', displayName: 'Name', enableHiding: false
        },
        { field: 'author', displayName: 'Author', enableHiding: false,
-         editableCellTemplate: 'ui-grid/dropdownEditor',
-         editDropdownRowEntityOptionsArrayPath: $scope.authorNames
+         cellTemplate: 'tempAuthor.html'
        },
        { field: 'genre', name: 'genre', displayName: 'Genre', enableHiding: false,
          editableCellTemplate: 'ui-grid/dropdownEditor',
@@ -53,11 +53,24 @@ app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', function(
     ]
   };
   
-//   $scope.booksIds = [];
-//       for(var i = 0; i < $scope.bookTemp.length; i++){
-//           $scope.booksIds.push($scope.bookTemp[i].author);
 
-//   };
+var bookAuthorNames = $scope.bookTemp.map(function(book){
+     var authorNum = book.author; 
+
+     var authorName = authorService.authorsList.filter(function(author){
+        //return true 
+        return author.id == authorNum; 
+    })[0].name;
+    return authorName;
+ })
+console.log(bookAuthorNames);
+
+
+
+//https://stackoverflow.com/questions/18719383/how-to-filter-an-array-object-by-checking-multiple-values
+//https://stackoverflow.com/questions/31005396/filter-array-of-objects-with-another-array-of-objects
+
+
   
 var today = new Date();
 var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
@@ -77,3 +90,4 @@ var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
 }]);
 
 //http://ui-grid.info/docs/#/api/ui.grid.edit.api:ColumnDef
+//https://stackoverflow.com/questions/26182847/angularjs-select-show-other-attribute-from-array-than-the-one-stored-in-ng-mo

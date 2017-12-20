@@ -1,5 +1,5 @@
 <div>
-    <select ng-model="row.entity.author" ng-options="a for a in grid.appScope.booksIds">
-        <option value="" selected disabled>Choose Author</option>
-    </select>
+    <div ng-model="row.entity.author" class="ui-grid-cell-contents">
+        {{grid.appScope.bookAuthorNames[(grid.renderContainers.body.visibleRowCache.indexOf(row))]}}
+    </div>
 </div>

@@ -43,7 +43,6 @@ $scope.logInMessage = "";
 $scope.loggedIn = false;
 $scope.errorMessage = "";
 $rootScope.logInName = "";
-//$scope.currentUser = [];
 
 
 
@@ -54,7 +53,6 @@ $scope.loginMatch = function() {
          if ($scope.usernameinput == $scope.users[i].username) {
           if ($scope.passwordinput == $scope.users[i].password) {
             //if it is a match, do all these things  
-           // $scope.currentUser.push($scope.users[i]);
             alert($scope.users[i].name + " is logged in");
             $rootScope.logInName = $scope.users[i].name;
             $scope.loggedIn = true;
@@ -64,28 +62,32 @@ $scope.loginMatch = function() {
             return;
         
           } else {
-         //   alert("Login attempt not successful. Please try again.");
             $scope.errorMessage = "Login attempt not successful. Please try again.";
             $scope.loginForm.$setUntouched();
             $scope.loginForm.$setPristine();
-            $scope.currentUser = [];
             return;
           }
         } 
+        
+        if ($scope.usernameinput != $scope.users[i].username) {
+            $scope.errorMessage = "User does not exist.";
+            $scope.loginForm.$setUntouched();
+            $scope.loginForm.$setPristine();
+            }
+  
      } 
 
-if ($scope.usernameinput != $scope.users.username) {
-   // alert("User does not exist.");
-    $scope.errorMessage = "User does not exist";
-    $scope.loginForm.$setUntouched();
-    $scope.loginForm.$setPristine();
-    $scope.currentUser = [];
-  }
+//if a field is empty when submitted, error message
+if(!$scope.usernameinput){
+   $scope.errorMessage = "Please enter a username."; 
+}
+
+if(!$scope.passwordinput){
+   $scope.errorMessage = "Please enter a password."; 
+}
+  
 }; 
 
-// $scope.logout = function(){
-//   window.location.reload();
-// };
 
 
 }); 

@@ -38,7 +38,9 @@ app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', function(
        { field: 'name', displayName: 'Name', enableHiding: false
        },
        { field: 'author', displayName: 'Author', enableHiding: false,
-         cellTemplate: 'tempAuthor.html'
+         cellTemplate: 'tempAuthor.html', 
+         editableCellTemplate: 'ui-grid/dropdownEditor',
+         editDropdownOptionsArray: $scope.authorNameArray
        },
        { field: 'genre', name: 'genre', displayName: 'Genre', enableHiding: false,
          editableCellTemplate: 'ui-grid/dropdownEditor',
@@ -53,25 +55,32 @@ app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', function(
     ]
   };
   
-
-var bookAuthorNames = $scope.bookTemp.map(function(book){
+//map will loop through all the books objects in bookTemp
+$scope.bookAuthorNames = $scope.bookTemp.map(function(book){
+    //create a variable to store author id of each book in bookTemp
      var authorNum = book.author; 
-
-     var authorName = authorService.authorsList.filter(function(author){
-        //return true 
+    //var authorName is a variable to store the result of the following filter
+    //filter will look through each object of the authorsList array and return the one that has
+    //the object's author id equal to the author id of the books in bookTemp
+     $scope.authorName = authorService.authorsList.filter(function(author){
         return author.id == authorNum; 
+        //it will return an array of one object from authorsList that matches the criteria but to access that object,
+        //you have to choose index [0] because it's the only one in the array
+        //then you specify that you want the author name from that same object
     })[0].name;
-    return authorName;
+    //returns the name for the author (in a string) that belongs to that id
+    return $scope.authorName;
  })
-console.log(bookAuthorNames);
+ //.map will continue to filter and compare through rach book object in bookTemp and always return the name of the
+ //author that corresponds with that id - bookAuthorsNames holds the data, so this is a new array of just the author names
 
+//dynamic array of author names
+$scope.authorNameArray = authorService.authorsList.map(function(author){
+    return author.name;
 
+})
+console.log($scope.authorNameArray);
 
-//https://stackoverflow.com/questions/18719383/how-to-filter-an-array-object-by-checking-multiple-values
-//https://stackoverflow.com/questions/31005396/filter-array-of-objects-with-another-array-of-objects
-
-
-  
 var today = new Date();
 var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
 
@@ -85,7 +94,6 @@ var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
     $scope.bookTemp.splice($scope.bookTemp.lastIndexOf(data), 1);
   });
 };
-
 
 }]);
 

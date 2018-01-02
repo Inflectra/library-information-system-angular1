@@ -2,7 +2,7 @@
 <div class="row">
     
     <h3>The following books exist in the system:</h3>
-    <small><button type="button" class="btn btn-default btn-sm" ng-click="addNewBook()">create new book</button></small>
+    <small><button type="button" class="btn btn-default btn-sm" ng-click="openModal()">create new book</button></small>
 
         <div ui-grid="bookGridOptions" ui-grid-edit ui-grid-row-edit ui-grid-cellNav ui-grid-save-state ui-grid-selection class="grid"></div>
 
@@ -12,8 +12,49 @@
          <!--          <button type="button" class="btn btn-danger btn-xs -->
          <!--          ">Delete</button>-->
          <!--</div>-->
+        
+        <!--<div class="alert alert-warning" ng-show="!authorDropdown.$valid">ERROR</div>-->
 
-        <button type="button" class="btn btn-default btn-sm btn-danger" ng-click="deleteSelected()">Delete Selected Authors</button>
+        <button type="button" class="btn btn-default btn-sm btn-danger" ng-click="deleteSelected()">Delete Selected Books</button>
+
+<modal id="bookModal">
+    <div class="modal" id="bookModalBody">
+        <div class="modal-content">
+            <h1>Please complete all fields:</h1>
+           
+           <div class="alert alert-warning" ng-show="modalForm.$submitted && modalForm.$invalid">Please complete all fields.</div>
+           
+            <form name="modalForm">
+                
+                <label for="name">Enter Title: 
+                <input ng-model="newTitle" type="text" name="title" required>
+                </label>
+                
+                <label for="author">Select Author: 
+                <select required name="authorSelect" ng-model="newAuthor">
+                  <option value="" selected="selected">Choose Author</option>
+                  <option ng-repeat="option in authorNameArray">{{option}}</option>
+                </select>
+                </label>
+                
+                <label for="genre">Select Genre: 
+                <select required name="genreSelect" ng-model="newGenre">
+                  <option value="" selected="selected">Choose Genre</option>
+                  <option ng-repeat="genre in genreTypesModal">{{genre}}</option>
+                </select>
+                </label>
+                <br>
+                
+                <span>
+                <button type="submit" ng-click="addNewBook()" ng-disabled="!modalForm.$valid" class="btn btn-success">Save</button>
+                <button ng-click="closeModal()" class="btn btn-warning">Cancel</button>
+                </span>
+                
+              </form>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
 
 
 </div>

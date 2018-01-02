@@ -8,12 +8,15 @@ app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', function(
    };
    
   $scope.bookTemp = bookService.booksList;
-  $scope.temp;
-  
+
   $scope.genreTypes = [
     {id:"Murder Mystery", value:"Murder Mystery"},
     {id:"Historical Fiction", value:"Historical Fiction"},
     {id:"Contemporary Fiction", value:"Contemporary Fiction"} 
+  ];
+  
+    $scope.genreTypesModal = [
+    "Murder Mystery", "Historical Fiction", "Contemporary Fiction" 
   ];
   
   $scope.bookGridOptions = {
@@ -40,7 +43,9 @@ app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', function(
        { field: 'author', displayName: 'Author', enableHiding: false,
          cellTemplate: 'tempAuthor.html', 
          editableCellTemplate: 'ui-grid/dropdownEditor',
-         editDropdownOptionsArray: $scope.authorNameArray
+         editDropdownOptionsArray: authorService.authorsList,
+         editDropdownIdLabel: 'id',
+         editDropdownValueLabel: 'name' 
        },
        { field: 'genre', name: 'genre', displayName: 'Genre', enableHiding: false,
          editableCellTemplate: 'ui-grid/dropdownEditor',
@@ -84,9 +89,15 @@ console.log($scope.authorNameArray);
 var today = new Date();
 var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
 
+//   $scope.addNewBook = function() {
+//      var n = $scope.bookTemp.length + 1;
+//      $scope.bookTemp.push( { id: n, name: 'New Book', author: 'Choose Author', genre: 'Choose Genre', dateAdded: date, outOfPrint: "No"  });
+//      };
+
    $scope.addNewBook = function() {
      var n = $scope.bookTemp.length + 1;
-     $scope.bookTemp.push( { id: n, name: 'New Book', author: "", genre: "", dateAdded: date, outOfPrint: "No"  });
+     $scope.bookTemp.push( { id: n, name: $scope.newTitle, author: $scope.newAuthor, genre: $scope.newGenre, dateAdded: date, outOfPrint: "No"  });
+     modal.css('display', 'none');
      };
 
   $scope.deleteSelected = function(row) {
@@ -95,7 +106,24 @@ var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
   });
 };
 
+// Get the modal
+var modal = angular.element( document.querySelector( '#bookModalBody' ) );
+
+// Get the button that opens the modal
+
+// When the user clicks on the button, open the modal 
+$scope.openModal = function() {
+    // modal.style.display = "block";
+    modal.css('display', 'block');
+}
+
+//When the user clicks on <span> (x), close the modal
+$scope.closeModal = function() {
+    modal.css('display', 'none');
+}
+
+
 }]);
 
-//http://ui-grid.info/docs/#/api/ui.grid.edit.api:ColumnDef
-//https://stackoverflow.com/questions/26182847/angularjs-select-show-other-attribute-from-array-than-the-one-stored-in-ng-mo
+//http://brianhann.com/create-a-modal-row-editor-for-ui-grid-in-minutes/
+//https://docs.angularjs.org/api/ng/input/input%5Btext%5D

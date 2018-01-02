@@ -45,10 +45,9 @@ app.controller('authorsCtrl', ['$scope', 'authorService', function($scope, autho
     
     $scope.selected = $scope.temp[0];
     
-          if($scope.temp.name = "New Author"){
-        $scope.authorErrorMessage = "Please enter a valid author name."; 
-      
-      }
+    if($scope.temp.name = "New Author"){
+    $scope.authorErrorMessage = "Please enter a valid author name."; 
+    }
   
 }]);
 

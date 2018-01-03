@@ -1,7 +1,7 @@
 /* global app */
 /* global angular */
 
-app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', function($scope, bookService, authorService, $index) {
+app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', 'enableEditService', function($scope, bookService, authorService, enableEditService, $index) {
   
   $scope.include = function(obj) {
      bookService.updateBooks(obj);
@@ -18,6 +18,8 @@ app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', function(
     $scope.genreTypesModal = [
     "Murder Mystery", "Historical Fiction", "Contemporary Fiction" 
   ];
+  
+   $scope.edit = enableEditService.edit;
   
   $scope.bookGridOptions = {
     
@@ -38,16 +40,16 @@ app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', function(
        //{ field: 'button', name: '', cellTemplate: '<button class="btn btn-warning ui-grid-cell-contents" ng-click="grid.appScope.deleteRow()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>', width: 29, enableColumnMenu: false, enableCellEdit: false },
        { field: 'id', displayName: 'ID', enableCellEdit: false, enableHiding: false
        },
-       { field: 'name', displayName: 'Name', enableHiding: false
+       { field: 'name', displayName: 'Name', enableHiding: false, cellEditableCondition: $scope.edit
        },
-       { field: 'author', displayName: 'Author', enableHiding: false,
+       { field: 'author', displayName: 'Author', enableHiding: false, cellEditableCondition: $scope.edit,
          cellTemplate: 'tempAuthor.html', 
          editableCellTemplate: 'ui-grid/dropdownEditor',
          editDropdownOptionsArray: authorService.authorsList,
          editDropdownIdLabel: 'id',
          editDropdownValueLabel: 'name' 
        },
-       { field: 'genre', name: 'genre', displayName: 'Genre', enableHiding: false,
+       { field: 'genre', name: 'genre', displayName: 'Genre', enableHiding: false, cellEditableCondition: $scope.edit,
          editableCellTemplate: 'ui-grid/dropdownEditor',
          editDropdownOptionsArray: $scope.genreTypes
        },

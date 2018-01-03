@@ -1,4 +1,6 @@
 /*global app*/
+/*global $scope*/
+
 app.service('authorService', function ($http) {
 
 var authorsList = [
@@ -37,4 +39,5 @@ return {
     updateAuthors : updateAuthors 
     
 };
+
 });

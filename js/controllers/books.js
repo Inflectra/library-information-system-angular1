@@ -78,7 +78,6 @@ $scope.bookAuthorNames = $scope.bookTemp.map(function(book){
  })
  //.map will continue to filter and compare through rach book object in bookTemp and always return the name of the
  //author that corresponds with that id - bookAuthorsNames holds the data, so this is a new array of just the author names
-
 //dynamic array of author names
 $scope.authorNameArray = authorService.authorsList.map(function(author){
     return author.name;

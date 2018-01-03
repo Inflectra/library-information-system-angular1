@@ -43,6 +43,7 @@ $scope.logInMessage = "";
 $scope.loggedIn = false;
 $scope.errorMessage = "";
 $rootScope.logInName = "";
+$rootScope.logInId = "";
 
 
 
@@ -54,6 +55,7 @@ $scope.loginMatch = function() {
           if ($scope.passwordinput == $scope.users[i].password) {
             //if it is a match, do all these things  
             alert($scope.users[i].name + " is logged in");
+            $rootScope.logInId = $scope.users[i].id;
             $rootScope.logInName = $scope.users[i].name;
             $scope.loggedIn = true;
             $scope.errorMessage = "";
@@ -88,6 +90,17 @@ if(!$scope.passwordinput){
   
 }; 
 
+if($rootScope.loggedIn = true){
+    if($rootScope.logInId = 2){
+   //visitor: double check permissions later
+    }
+    if($rootScope.logInId = 3){
+       //member: author list is view only 
+    }
+    if($rootScope.logInId = 4){
+   //banned: display the login error message
+    }
 
+};
 
 }); 

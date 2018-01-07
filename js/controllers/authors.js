@@ -1,7 +1,7 @@
 /* global app */
 /* global angular */
 
-app.controller('authorsCtrl', ['$scope', 'authorService', 'enableEditService', function($scope, authorService, enableEditService, $index) {
+app.controller('authorsCtrl', ['$scope', 'authorService', 'enableEditService', 'bookService', function($scope, authorService, enableEditService, bookService, $index) {
   
   $scope.include = function(obj) {
      authorService.updateAuthors(obj);
@@ -41,10 +41,6 @@ app.controller('authorsCtrl', ['$scope', 'authorService', 'enableEditService', f
     ]
   };
   
-  // $scope.enableAuthor = function(){
-  // $scope.edit = true;
-  // }
-  
   $scope.addNewItem = function() {
     var n = $scope.temp.length + 1;
     $scope.temp.push( { id: n, name: 'New Author', age: 0});
@@ -53,8 +49,10 @@ app.controller('authorsCtrl', ['$scope', 'authorService', 'enableEditService', f
     
     $scope.selected = $scope.temp[0];
     
-    // if($scope.temp.name = "New Author"){
-    // $scope.authorErrorMessage = "Please enter a valid author name."; 
+    // // loop through the bookslist
+    // for(var b = 0; b < bookService.booksList; b++){
+    // // if the author has a book associated with them, they cannot be deleted
+    //   if(bookService.booksList[b])
     // }
   
 }]);

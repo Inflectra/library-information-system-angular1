@@ -1,5 +1,6 @@
 /* global app */
 /* global angular */
+/*global $rootScope*/
 
 app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', 'enableEditService', function($scope, bookService, authorService, enableEditService, $index) {
   

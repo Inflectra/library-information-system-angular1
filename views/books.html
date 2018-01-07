@@ -2,7 +2,7 @@
 <div class="row">
     
     <h3>The following books exist in the system:</h3>
-    <small><button type="button" class="btn btn-default btn-sm" ng-click="openModal()">create new book</button></small>
+    <small><button type="button" class="btn btn-default btn-sm" ng-click="openModal()" ng-hide="!edit">create new book</button></small>
 
         <div ui-grid="bookGridOptions" ui-grid-edit ui-grid-row-edit ui-grid-cellNav ui-grid-save-state ui-grid-selection class="grid"></div>
 
@@ -15,7 +15,7 @@
         
         <!--<div class="alert alert-warning" ng-show="!authorDropdown.$valid">ERROR</div>-->
 
-        <button type="button" class="btn btn-default btn-sm btn-danger" ng-click="deleteSelected()">Delete Selected Books</button>
+        <button type="button" class="btn btn-default btn-sm btn-danger" ng-click="deleteSelected()" ng-hide="!edit">Delete Selected Books</button>
 
 <modal id="bookModal">
     <div class="modal" id="bookModalBody">

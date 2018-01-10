@@ -8,6 +8,7 @@ app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', 'enableEd
      bookService.updateBooks(obj);
    };
    
+  $scope.authorNameDropdown = authorService.authorsList; 
   $scope.bookTemp = bookService.booksList;
 
   $scope.genreTypes = [
@@ -38,7 +39,7 @@ app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', 'enableEd
                    },
   
     columnDefs: [
-       //{ field: 'button', name: '', cellTemplate: '<button class="btn btn-warning ui-grid-cell-contents" ng-click="grid.appScope.deleteRow()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>', width: 29, enableColumnMenu: false, enableCellEdit: false },
+
        { field: 'id', displayName: 'ID', enableCellEdit: false, enableHiding: false
        },
        { field: 'name', displayName: 'Name', enableHiding: false, cellEditableCondition: $scope.edit
@@ -58,8 +59,6 @@ app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', 'enableEd
        },
        { field: 'outOfPrint', displayName: 'Out of Print?', enableCellEdit: false, enableHiding: false
        },
-      // { field: 'active', displayName: 'Active', enableHiding: false
-      // }
     ]
   };
   
@@ -86,15 +85,9 @@ $scope.authorNameArray = authorService.authorsList.map(function(author){
     return author.name;
 
 })
-console.log($scope.authorNameArray);
 
 var today = new Date();
 var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
-
-//   $scope.addNewBook = function() {
-//      var n = $scope.bookTemp.length + 1;
-//      $scope.bookTemp.push( { id: n, name: 'New Book', author: 'Choose Author', genre: 'Choose Genre', dateAdded: date, outOfPrint: "No"  });
-//      };
 
    $scope.addNewBook = function() {
      var n = $scope.bookTemp.length + 1;
@@ -108,24 +101,25 @@ var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
   });
 };
 
+// $scope.saveData = function(){
+//     $scope.gridApi.rowEdit.flushDirtyRows();
+// };
+
 // Get the modal
 var modal = angular.element( document.querySelector( '#bookModalBody' ) );
-
-// Get the button that opens the modal
 
 // When the user clicks on the button, open the modal 
 $scope.openModal = function() {
     // modal.style.display = "block";
     modal.css('display', 'block');
-}
+};
 
 //When the user clicks on <span> (x), close the modal
 $scope.closeModal = function() {
     modal.css('display', 'none');
-}
+};
 
 
 }]);
 
-//http://brianhann.com/create-a-modal-row-editor-for-ui-grid-in-minutes/
-//https://docs.angularjs.org/api/ng/input/input%5Btext%5D
+//https://stackoverflow.com/questions/30492159/how-to-get-notified-when-grid-changed-in-angularjs-ui-grid

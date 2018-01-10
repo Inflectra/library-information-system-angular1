@@ -1,23 +1,5 @@
 <div ng-form="authorDropdown">
-    <div ng-model="row.entity.author" class="ui-grid-cell-contents" required>
+    <div ng-model="row.entity.author" class="ui-grid-cell-contents">
         {{grid.appScope.bookAuthorNames[(grid.renderContainers.body.visibleRowCache.indexOf(row))]}}
     </div>
 </div>
-
-<!--<form name="myForm">-->
-<!--  Select an option:-->
-<!--  <select id="dropDown" name="dropDown" ng-model="data.dropDown" required>-->
-<!--    <option>red</option>-->
-<!--    <option>blue</option>-->
-<!--    <option>green</option>-->
-<!--  </select><br/>-->
-<!--  From Date:-->
-<!--  <input type="text" id="dateFrom" ng-model="data.date1" required/><br/>-->
-<!--  To Date:-->
-<!--  <input type="text" id="dateTo" ng-model="data.date2" required /><br/>-->
-<!--  <button id="submit" ng-click="submitRequest()" ng-disabled="myForm.$invalid">Submit</button>-->
-<!--</form>-->
-
-<!--https://stackoverflow.com/questions/32971767/how-to-add-individual-cell-validation-in-ui-grid-angularjs-->
-<!--https://stackoverflow.com/questions/32971767/how-to-add-individual-cell-validation-in-ui-grid-angularjs-->
-<!--https://stackoverflow.com/questions/37998477/angularjs-disable-button-when-input-fields-are-empty-->

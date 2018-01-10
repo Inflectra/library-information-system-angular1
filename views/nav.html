@@ -5,10 +5,10 @@
             </div>
             <ul class="nav navbar-nav">
                 <li><a ui-sref="books">Books</a></li>
-                <li><a ui-sref="authors" ng-disabled="!authorDropdown.$valid">Authors</a></li>
+                <li><a ui-sref="authors">Authors</a></li>
             </ul>
             <div data-ng-controller="loginCtrl">
-            <div><p class="navbar-text navbar-right">Logged in as {{logInName}}, <a href="#" class="navbar-link" ng-click="logOut()">Log Out</a></p></div>
+            <div ng-show="loggedIn"><p class="navbar-text navbar-right">Logged in as {{logInName}}, <a href="#" class="navbar-link" ng-click="logOut()">Log Out</a></p></div>
             </div>
           </div>
         </nav>   

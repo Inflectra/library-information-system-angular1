@@ -45,9 +45,7 @@ $scope.users=[
 ];
 
 $scope.logInMessage = "";
-$scope.loggedIn = false;
 $scope.errorMessage = "";
-$rootScope.logInName = "";
 $rootScope.logInId = "";
 $rootScope.logInPermission = "";
 $rootScope.logInActive = "";
@@ -59,12 +57,11 @@ $scope.loginMatch = function() {
           if ($scope.passwordinput == $scope.users[i].password) {
            if ($scope.users[i].active == true) {
             //if it is a match, do all these things  
-            alert($scope.users[i].name + " is logged in");
             $rootScope.logInId = $scope.users[i].id;
             $rootScope.logInName = $scope.users[i].name;
             $rootScope.logInPermission = $scope.users[i].permission;
             $rootScope.logInActive = $scope.users[i].active;
-            $scope.loggedIn = true;
+            // $scope.loggedIn = true;
             $scope.errorMessage = "";
            // $location.path('books');
             $rootScope.loggedIn = true;

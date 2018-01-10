@@ -11,8 +11,6 @@ app.controller('authorsCtrl', ['$scope', 'authorService', 'enableEditService', '
   $scope.authorErrorMessage = "";
   
   $scope.edit = enableEditService.edit;
-    console.log($scope.edit);
-
   
   $scope.gridOptions = {
     
@@ -31,7 +29,6 @@ app.controller('authorsCtrl', ['$scope', 'authorService', 'enableEditService', '
                    },
   
     columnDefs: [
-       //{ field: 'button', name: '', cellTemplate: '<button class="btn btn-warning ui-grid-cell-contents" ng-click="grid.appScope.deleteRow()"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>', width: 29, enableColumnMenu: false, enableCellEdit: false },
        { field: 'id', displayName: 'ID', enableCellEdit: false, enableHiding: false
        },
        { field: 'name', displayName: 'Name', enableHiding: false, cellEditableCondition: $scope.edit
@@ -43,17 +40,30 @@ app.controller('authorsCtrl', ['$scope', 'authorService', 'enableEditService', '
   
   $scope.addNewItem = function() {
     var n = $scope.temp.length + 1;
-    $scope.temp.push( { id: n, name: 'New Author', age: 0});
-    console.log($scope.temp);
+    $scope.temp.push( { id: n, name: $scope.newAuthorName, age: $scope.newAuthorAge});
+    modal.css('display', 'none');
     };
     
     $scope.selected = $scope.temp[0];
     
-    // // loop through the bookslist
-    // for(var b = 0; b < bookService.booksList; b++){
-    // // if the author has a book associated with them, they cannot be deleted
-    //   if(bookService.booksList[b])
-    // }
-  
+   
+   // Get the modal
+
+    var modal = angular.element( document.querySelector( '#authorModalBody' ) );
+
+    // When the user clicks on the button, open the modal 
+    $scope.openModal = function() {
+        // modal.style.display = "block";
+        modal.css('display', 'block');
+    };
+    
+    //When the user clicks on <span> (x), close the modal
+    $scope.closeModal = function() {
+        modal.css('display', 'none');
+    };
+
+    
+    
+    
 }]);
 

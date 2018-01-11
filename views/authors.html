@@ -3,20 +3,18 @@
         
         <h3>The following authors exist in the system:</h3>
 
-        <div ui-grid="gridOptions" ui-grid-edit ui-grid-row-edit ui-grid-cellNav ui-grid-save-state ui-grid-selection class="grid"></div>
+        <div ui-grid="gridOptions" ui-grid-edit ui-grid-row-edit ui-grid-cellNav ui-grid-save-state ui-grid-selection class="short-grid"></div>
     
-        <small><button type="button" class="btn btn-default btn-sm btn-warning" ng-click="openModal()" ng-hide="!edit">Create New Author</button></small>
+        <button type="button" class="btn btn-default btn-sm btn-success" ng-click="openModal()" ng-hide="!edit">Create New Author</button>
     
-    <!------------new author modal------------>
+<!------------new author modal------------>
 
 <modal id="authorModal">
     <div class="modal" id="authorModalBody">
         <div class="modal-content">
-            <h1>Please complete all fields:</h1>
+            <h2>Please complete all fields:</h2>
            
-           <div class="alert alert-warning" ng-show="modalForm.$submitted && modalForm.$invalid">Please complete all fields.</div>
-           
-            <form name="modalForm">
+            <form name="modalForm" novalidate>
                 
                 <label for="name">Enter Name: 
                 <input ng-model="newAuthorName" type="text" name="title" required>
@@ -38,7 +36,6 @@
     <div class="modal-background"></div>
 </modal>
 
-    
     </div>
 </main>
 

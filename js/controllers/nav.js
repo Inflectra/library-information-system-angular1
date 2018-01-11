@@ -7,7 +7,6 @@ $scope.logOut = function(){
    $rootScope.logInId = "";
    $location.path('home');
    $state.reload();
- }
-
+ };
 
 });

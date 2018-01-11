@@ -13,28 +13,32 @@
         <div data-ng-controller="loginCtrl">
         <div class="col-md-4 col-md-offset-2">
             <div ng-hide="loggedIn">
-            <h2>Please login</h2>
-            <form name="loginForm" novalidate>
-                <div class="form-group">
+                <h2>Please Log In</h2>
+                <form name="loginForm" novalidate>
+                    <div class="form-group">
+                        
+                        <div class="alert alert-warning" ng-show="errorMessage">{{errorMessage}}</div>
+                        
+                        <label for="username">Username</label>
+                        <input ng-model="usernameinput" name="user" type="text" class="form-control" id="username" placeholder="Username" required="" />
+    
+                        </div>
+                        
+                    <div class="form-group">
+                        
+                        <label for="password">Password</label>
+                        <input ng-model="passwordinput" name="password" type="password" class="form-control" id="password" placeholder="Password" required="" />
                     
-                    <div class="alert alert-warning" ng-show="errorMessage">{{errorMessage}}</div>
+                    </div>
                     
-                    <label for="username">Username</label>
-                    <input ng-model="usernameinput" name="user" type="text" class="form-control" id="username" placeholder="Username" required="" />
-
-                    </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input ng-model="passwordinput" name="password" type="password" class="form-control" id="password" placeholder="Password" required="" />
-                    </div>
                     <div>
                         <button type="submit" class="btn btn-primary" ng-click="loginMatch()" />Login</button>
-                   </div>
+                    </div>
+                    
                 </form>
             
+           </div>
         </div>
-            
-        </div>
-        </div>
+      </div>
     </div>
 </main>

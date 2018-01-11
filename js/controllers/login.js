@@ -56,12 +56,11 @@ $scope.loginMatch = function() {
          if ($scope.usernameinput == $scope.users[i].username) {
           if ($scope.passwordinput == $scope.users[i].password) {
            if ($scope.users[i].active == true) {
-            //if it is a match, do all these things  
+            //if it is a match and the user is active, do all these things  
             $rootScope.logInId = $scope.users[i].id;
             $rootScope.logInName = $scope.users[i].name;
             $rootScope.logInPermission = $scope.users[i].permission;
             $rootScope.logInActive = $scope.users[i].active;
-            // $scope.loggedIn = true;
             $scope.errorMessage = "";
            // $location.path('books');
             $rootScope.loggedIn = true;
@@ -73,12 +72,11 @@ $scope.loginMatch = function() {
              else { //everyone else
                  enableEditService.edit = false;
              }
-            }//banned
-        
+            }
+            //banned
             $scope.errorMessage = "Sorry, this user is no longer active.";
             $scope.loginForm.$setUntouched();
             $scope.loginForm.$setPristine();
-            
             return;
          
           } else {
@@ -95,19 +93,19 @@ $scope.loginMatch = function() {
             $scope.loginForm.$setPristine();
             }
   
-     } 
+    } 
 
-//if a field is empty when submitted, error message
-if(!$scope.usernameinput){
-   $scope.errorMessage = "Please enter a username."; 
-}
-
-if(!$scope.passwordinput){
-   $scope.errorMessage = "Please enter a password."; 
-}
+    if(!$scope.usernameinput){
+        if(!$scope.passwordinput){
+            $scope.errorMessage = "Please provide login details."; 
+        }
+        else {
+             $scope.errorMessage = "Please enter a username.";
+        }
+    } else if(!$scope.passwordinput){
+        $scope.errorMessage = "Please enter a password.";
+    }
   
 }; 
 
 }); 
-
-//http://plnkr.co/edit/xit2sdognj9Z01DpFU5N?p=preview

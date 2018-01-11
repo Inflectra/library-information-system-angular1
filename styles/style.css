@@ -5,6 +5,7 @@ nav p {
 .grid {
   width: 100%;
   height: 250px;
+  margin: 15px 0;
 }
 
 .modal {
@@ -43,3 +44,8 @@ nav p {
     text-decoration: none;
     cursor: pointer;
 }
+
+.button-spacing {
+    margin: 0 5px 0 0;
+}
+

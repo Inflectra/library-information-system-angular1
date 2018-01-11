@@ -2,7 +2,7 @@
 /* global angular */
 /*global $rootScope*/
 
-app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', 'enableEditService', function($scope, bookService, authorService, enableEditService, $index) {
+app.controller('booksCtrl', ['$scope', '$state', '$stateParams', 'bookService', 'authorService', 'enableEditService', 'uiGridConstants', function($scope, $state, $stateParams, bookService, authorService, enableEditService, uiGridConstants, $index) {
   
   $scope.include = function(obj) {
      bookService.updateBooks(obj);
@@ -36,6 +36,11 @@ app.controller('booksCtrl', ['$scope', 'bookService', 'authorService', 'enableEd
     enableRowSelection: true,
     onRegisterApi: function (gridApi) {
                    $scope.gridApi = gridApi;
+                   $scope.gridApi.edit.on.afterCellEdit($scope,function(rowEntity, colDef, newValue, oldValue){
+                         if(newValue != oldValue){
+                            $state.reload();
+                         }
+                    });
                    },
   
     columnDefs: [
@@ -92,6 +97,7 @@ var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
    $scope.addNewBook = function() {
      var n = $scope.bookTemp.length + 1;
      $scope.bookTemp.push( { id: n, name: $scope.newTitle, author: $scope.newAuthor, genre: $scope.newGenre, dateAdded: date, outOfPrint: "No"  });
+     $state.reload();
      modal.css('display', 'none');
      };
 
@@ -100,10 +106,6 @@ var date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
     $scope.bookTemp.splice($scope.bookTemp.lastIndexOf(data), 1);
   });
 };
-
-// $scope.saveData = function(){
-//     $scope.gridApi.rowEdit.flushDirtyRows();
-// };
 
 // Get the modal
 var modal = angular.element( document.querySelector( '#bookModalBody' ) );

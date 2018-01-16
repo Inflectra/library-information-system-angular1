@@ -1,2 +1,2 @@
-# Library Information System, AngularJS
+# Library Information System, Angular 1
 This is a sample application that lets you view, create and edit books in a libary catalog as well as view, create and edit authors.

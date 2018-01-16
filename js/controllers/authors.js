@@ -1,24 +1,26 @@
 /* global app */
 /* global angular */
 
-app.controller('authorsCtrl', ['$scope', 'authorService', 'enableEditService', 'bookService', function($scope, authorService, enableEditService, bookService, $index) {
+app.controller('authorsCtrl', ['$scope', 'authorService', 'enableEditService', function($scope, authorService, enableEditService, $index) {
   
   $scope.include = function(obj) {
      authorService.updateAuthors(obj);
    };
    
-  $scope.temp = authorService.authorsList;
+  $scope.authorData = authorService.authorsList;
   $scope.authorErrorMessage = "";
   
+  //true or false depending on who is logged in - allows certain cells to be editable via cellEditableCondition in columnDefs
   $scope.edit = enableEditService.edit;
   
+  //author grid setup
   $scope.gridOptions = {
     
-    data: 'temp',
+    data: 'authorData',
     enableCellSelection: true,
     enableCellEdit: true,
     enableCellEditOnFocus: true,
-    rowEditWaitInterval: -1,
+    rowEditWaitInterval: -1, //stops default save behavior
     saveFocus: false,
     saveScroll: true,
     saveGroupingExpandedStates: true,
@@ -38,32 +40,25 @@ app.controller('authorsCtrl', ['$scope', 'authorService', 'enableEditService', '
     ]
   };
   
+  //saving in the new author modal
   $scope.addNewItem = function() {
-    var n = $scope.temp.length + 1;
-    $scope.temp.push( { id: n, name: $scope.newAuthorName, age: $scope.newAuthorAge});
+    var n = $scope.authorData.length + 1;
+    $scope.authorData.push( { id: n, name: $scope.newAuthorName, age: $scope.newAuthorAge});
     modal.css('display', 'none');
     };
     
-    $scope.selected = $scope.temp[0];
-    
-   
-   // Get the modal
-
+   // get the modal
     var modal = angular.element( document.querySelector( '#authorModalBody' ) );
 
-    // When the user clicks on the button, open the modal 
+    // when the user clicks on the create new author button, open the modal 
     $scope.openModal = function() {
-        // modal.style.display = "block";
         modal.css('display', 'block');
     };
     
-    //When the user clicks on <span> (x), close the modal
+    //clicking cancel once modal is open, or closing the modal after saving
     $scope.closeModal = function() {
         modal.css('display', 'none');
     };
-
-    
-    
     
 }]);
 

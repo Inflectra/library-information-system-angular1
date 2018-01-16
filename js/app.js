@@ -33,7 +33,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller : "navCtrl"
     });
 })
-
+//kicks user back to homepage if they log out, prevents them from navigating unless they log in
 .run(['$rootScope', '$state', function($rootScope, $state) {
  $rootScope.loggedIn = false;
    $rootScope.$on('$stateChangeStart', function(e, to) {

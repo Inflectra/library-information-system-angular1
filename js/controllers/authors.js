@@ -20,11 +20,13 @@ app.controller('authorsCtrl', ['$scope', 'authorService', 'enableEditService', f
     enableCellSelection: true,
     enableCellEdit: true,
     enableCellEditOnFocus: true,
+    enableColumnMenus: false,
+    enableSorting: false,
     rowEditWaitInterval: -1, //stops default save behavior
     saveFocus: false,
     saveScroll: true,
     saveGroupingExpandedStates: true,
-    enableRowSelection: true,
+    enableRowSelection: false,
     enableRowHeaderSelection: false,
     onRegisterApi: function (gridApi) {
                    $scope.gridApi = gridApi;

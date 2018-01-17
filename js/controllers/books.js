@@ -32,6 +32,8 @@ app.controller('booksCtrl', ['$scope', '$state', '$stateParams', 'bookService', 
     enableCellSelection: true,
     enableCellEdit: true,
     enableCellEditOnFocus: true,
+    enableColumnMenus: false,
+    enableSorting: false,
     rowEditWaitInterval: -1, //stops default save behavior
     saveFocus: false,
     saveScroll: true,

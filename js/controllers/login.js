@@ -41,6 +41,14 @@ $scope.users=[
         name: "administrator", 
         active: true,
         permission: 1
+    },
+    {
+        id: 6, 
+        username: "borrower", 
+        password: "borrower", 
+        name: "Bella Borrower", 
+        active: true,
+        permission: 2
     }
 ];
 
